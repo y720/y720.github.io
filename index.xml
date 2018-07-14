@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My New Hugo Site</title>
+    <link>http://example.org/</link>
+    <description>Recent content on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    
+	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>http://example.org/post/2018-06-14/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/post/2018-06-14/</guid>
+      <description> 2018-06-14 我在加班          太辛苦了 太辛苦了太辛苦了  丽莎 喂， 林娜， 你在家吗？  林娜 不， 我还在公司。  丽莎 都十点了， 你还没下班啊？  林娜 是啊， 最近工作很多， 我几乎每天都加班到很晚。  丽莎 太辛苦了， 你要注意身体啊。  林娜 是啊， 我快受不了了， 我想向老板请假休息一天， 不然我就要生病了。  丽莎 那你赶快工作吧， 我不打扰你了。  林娜 你找我有什么事儿吗？  丽莎 不是什么重要的事儿， 这个周末我和小云去郊外爬山， 想叫你一起去。  林娜 这个周末恐怕不行， 我还得加班， 等我忙完了这些工作， 给你们打电话， 咱们再约时间。  丽莎 好的， 快工作吧， 别太晚回家。  林娜 好的。  </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://example.org/post/2018-06-28/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/post/2018-06-28/</guid>
+      <description> 2018-06-28 丢三落四 丽莎 小云Xiǎo yún， 你不是去上课了吗Nǐ bùshì qù shàngkèle ma？ 怎么回来了Zěnme huíláile？  小云 丽莎， 你看见我的钥匙了吗？ 我刚下楼就发现没带钥匙。  丽莎 昨天我看见你把钥匙放在桌子上了， 不在那儿吗？  小云 是吗？ 可是桌子上没有啊。  丽莎 别着急， 我帮你找找。  小云 快点儿吧， 不然我就迟到了。  （过了一会儿） 丽莎 房间里都找遍了， 还是没有。 你再仔细想想。  小云 是不是我把钥匙丢了？ 你说， 我为什么总是丢三落四的？  丽莎 你这个毛病真的应该改一改。 诶， 钥匙是不是在你的衣服口袋里？  小云 啊， 找到了， 多亏你提醒我。  </description>
+    </item>
+    
+  </channel>
+</rss>
