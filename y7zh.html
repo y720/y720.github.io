@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>y720jp 中国語暗記</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+<style type="text/css">
+  html,body {
+      margin:0;
+      padding:0;
+      text-align:left;
+      font-family:Arial, Helvetica, sans-serif;
+      -webkit-user-select:none;
+      -moz-user-select:none;
+      -ms-user-select:none;
+      user-select:none;
+  }
+  
+  .word {
+      margin: 0px;
+      border: 0px;
+      padding: 4px;
+      width: 100%;
+  }
+  
+</style>
+</head>
+<body>
+
+<!-- <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+  </div>
+</nav> -->
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  <script src="/js/purl.js"></script>
+  <script>
+    $(function(){
+      // タッチイベントが利用可能かの判別
+      var supportTouch = 'ontouchend' in document;
+      var EVENTNAME_TOUCHSTART = supportTouch ? 'touchstart' : 'mousedown';
+      var EVENTNAME_TOUCHEND = supportTouch ? 'touchend' : 'mouseup';
+  
+      var handleStart = function(event) {
+        var zhtext;
+        zhtext = $(event.target).data('zh');
+        if(zhtext) {
+          $(event.target).css('background-color', 'gray');
+          $(event.target).html(zhtext + '<br>' + $(event.target).data('pinyin'));
+          $(document).on(EVENTNAME_TOUCHEND, handleEnd);
+        }
+      };
+  
+      var handleEnd = function(event) {
+        $(event.target).css('background-color', 'white');
+        $(event.target).html($(event.target).data('jp'));
+        $(document).off(EVENTNAME_TOUCHEND, handleEnd);
+      };
+  
+      var q = $.url().param().q;
+      var wordsjson = "y7words.json";
+      if(q)
+        wordsjson = q;
+  
+      var time1;
+      time1 = new Date();
+      $.getJSON("json/" + wordsjson + "?" + time1.getTime(), function(words) {
+        var i, template;
+        for(i = 0; i < words.length; i++) {
+          if(words[i] && words[i][0] && words[i][0]!=='END') {
+            template = '';
+            template = template + '<div class="alert alert-dark alert-dismissible fade show" role="alert" style="margin-bottom:0;padding-top:4px;padding-bottom:4px;">';
+            if(!words[i][1]) {
+              template = template + '<div class="word"';
+            } else {
+              template = template + '<div class="h3 word"';
+            }
+            template = template + ' data-jp="' + words[i][0] + '"';
+            template = template + ' data-zh="' + words[i][1] + '"';
+            template = template + ' data-pinyin="' + words[i][2] + '"';
+            template = template + '>' + words[i][0];
+            template = template + '</div>';
+            template = template + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+            template = template + '<span aria-hidden="true">&times;</span>';
+            template = template + '</button>';
+            template = template + '</div>';
+            $("body").append(template);
+          }
+        }
+        $(".word").on(EVENTNAME_TOUCHSTART, handleStart);
+      });
+    });
+</script>
+</body>
+</html>
