@@ -6,9 +6,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,shrink-to-fit=no">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 <style type="text/css">
-  html,body {
+  body {
       margin:0;
-      padding:0;
+      padding-top: 5rem;
       text-align:left;
       font-family:Arial, Helvetica, sans-serif;
       -webkit-user-select:none;
@@ -16,40 +16,54 @@
       -ms-user-select:none;
       user-select:none;
   }
-  
+
+  rt {
+      margin:0;
+      padding:0;
+      text-align:left;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size: 80%;
+      -webkit-user-select:none;
+      -moz-user-select:none;
+      -ms-user-select:none;
+      user-select:none;
+  }
+
   .word {
       margin: 0px;
       border: 0px;
       padding: 4px;
       width: 100%;
   }
-  
+
 </style>
 </head>
 <body>
-
-<!-- <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="#" id="navbar1"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"></a>
+        <a class="nav-link" href="#">Link</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        <a class="nav-link disabled" href="#">Disabled</a>
       </li>
     </ul>
   </div>
-</nav> -->
+</nav>
+
+<main role="main" class="container">
+</main><!-- /.container -->
+
+<br><br><br>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
@@ -57,58 +71,62 @@
   <script src="/js/purl.js"></script>
   <script>
     $(function(){
-      // タッチイベントが利用可能かの判別
-      var supportTouch = 'ontouchend' in document;
-      var EVENTNAME_TOUCHSTART = supportTouch ? 'touchstart' : 'mousedown';
-      var EVENTNAME_TOUCHEND = supportTouch ? 'touchend' : 'mouseup';
   
       var handleStart = function(event) {
-        var zhtext;
+        var zhtext,pinyin;
         zhtext = $(event.target).data('zh');
+        pinyin = $(event.target).data('pinyin');
         if(zhtext) {
           $(event.target).css('background-color', 'gray');
-          $(event.target).html(zhtext + '<br>' + $(event.target).data('pinyin'));
-          $(document).on(EVENTNAME_TOUCHEND, handleEnd);
+          if(pinyin) {
+            $(event.target).html(zhtext + '<br>' + pinyin);
+          } else {
+            $(event.target).html(zhtext);
+          }
+          $(event.target).hide().fadeIn(3000);
+          $(document).on('touchend', handleEnd);
+          setTimeout(function(){$(event.target).css('background-color', 'lightgreen'); }, 15000);
+          setTimeout(function(){$(event.target).css('background-color', 'white');}, 30000);
         }
       };
-  
+
       var handleEnd = function(event) {
-        $(event.target).css('background-color', 'white');
         $(event.target).html($(event.target).data('jp'));
-        $(document).off(EVENTNAME_TOUCHEND, handleEnd);
+        $(event.target).css('background-color', 'black');
+        $(document).off('touchend', handleEnd);
       };
-  
+
       var q = $.url().param().q;
       var wordsjson = "y7words.json";
       if(q)
         wordsjson = q;
-  
+
       var time1;
       time1 = new Date();
       $.getJSON("json/" + wordsjson + "?" + time1.getTime(), function(words) {
-        var i, template;
+        var i, cnt, template;
+        cnt = 0;
         for(i = 0; i < words.length; i++) {
           if(words[i] && words[i][0] && words[i][0]!=='END') {
-            template = '';
-            template = template + '<div class="alert alert-dark alert-dismissible fade show" role="alert" style="margin-bottom:0;padding-top:4px;padding-bottom:4px;">';
-            if(!words[i][1]) {
-              template = template + '<div class="word"';
-            } else {
+            cnt = cnt + 1;
+            if(words[i][1]) {
+              template = '';
+              template = template + '<div class="alert alert-dark alert-dismissible fade show" role="alert" style="margin-bottom:4px;padding:2px 10px;">';
               template = template + '<div class="h3 word"';
+              template = template + ' data-jp="' + words[i][0] + '"';
+              template = template + ' data-zh="' + words[i][1] + '"';
+              template = template + ' data-pinyin="' + words[i][2] + '"';
+              template = template + '>' + words[i][0];
+              template = template + '</div>';
+              template = template + '</div>';
+            } else {
+              template = '<div>' + words[i][0] + '</div>';
             }
-            template = template + ' data-jp="' + words[i][0] + '"';
-            template = template + ' data-zh="' + words[i][1] + '"';
-            template = template + ' data-pinyin="' + words[i][2] + '"';
-            template = template + '>' + words[i][0];
-            template = template + '</div>';
-            template = template + '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
-            template = template + '<span aria-hidden="true">&times;</span>';
-            template = template + '</button>';
-            template = template + '</div>';
-            $("body").append(template);
+            $("main").append(template);
           }
+          $("#navbar1").text(cnt);
         }
-        $(".word").on(EVENTNAME_TOUCHSTART, handleStart);
+        $(".word").on('touchstart', handleStart);
       });
     });
 </script>
