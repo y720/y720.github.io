@@ -18,7 +18,7 @@ $(function() {
 	anshtml = anshtml + zhtext;
       }
       mp3elmid = 'mp3elm_' + num;
-      anshtml = anshtml + '<br><a class="mp3playa" id="' + mp3elmid + '">.</a>';
+      anshtml = anshtml + '<br><a class="mp3playa" id="' + mp3elmid + '">-</a>';
       $(event.target).html(anshtml);
       $(event.target).off('touchstart', handleStart);
 
@@ -34,8 +34,7 @@ $(function() {
       xhr.onload = function () {
 	if(xhr.status == 200) {
 	  var dat = xhr.response;
-	  console.log('DONE', xhr.status);
-	  $(elm).text("play");
+	  $(elm).html('<i class="fa fa-play"></i>');
 	  $(elm).click(function() {
 	    window.AudioContext = window.AudioContext || window.webkitAudioContext;
 	    var ctx = new AudioContext();
