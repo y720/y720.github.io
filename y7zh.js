@@ -33,7 +33,6 @@ $(function() {
       xhr.responseType = "arraybuffer";
       xhr.onload = function () {
 	if(xhr.status == 200) {
-	  var dat = xhr.response;
 	  $(elm).html('<i class="fa fa-play"></i>');
 	  $(elm).click(function() {
 	    window.AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -41,7 +40,7 @@ $(function() {
 	    var src = ctx.createBufferSource();
 
 	    // オーディオをデコード
-	    ctx.decodeAudioData(dat, function (buf) {
+	    ctx.decodeAudioData(xhr.response, function (buf) {
               src.buffer = buf;
               src.loop = false;
               src.connect(ctx.destination);
