@@ -57,7 +57,6 @@ $(function() {
         $(event.target).html($(event.target).data('jp'));
         $(event.target).css('border', '2px solid #fff');
         $(event.target).on('touchstart', handleStart);
-        ctx.close();
       }, 15000);
     }
   };
