@@ -13,9 +13,9 @@ $(function() {
       $(event.target).css('border', '2px solid #000');
       anshtml = '';
       if(pinyin) {
-	anshtml = anshtml + '<ruby>' + zhtext + '<rt>' + pinyin + '</rt></ruby>';
+        anshtml = anshtml + '<ruby>' + zhtext + '<rt>' + pinyin + '</rt></ruby>';
       } else {
-	anshtml = anshtml + zhtext;
+        anshtml = anshtml + zhtext;
       }
       mp3elmid = 'mp3elm_' + num;
       anshtml = anshtml + '<br><a class="mp3playa" id="' + mp3elmid + '">-</a>';
@@ -34,19 +34,19 @@ $(function() {
       xhr.open('GET', mp3, true);
       xhr.responseType = "arraybuffer";
       xhr.onload = function () {
-          if(xhr.status == 200) {
-              $(elm).html('<i class="fa fa-play"></i>');
-              $(elm).click(function() {
-                  var src = ctx.createBufferSource();
-                  // オーディオをデコード
-                  ctx.decodeAudioData(xhr.response, function (buf) {
-                      src.buffer = buf;
-                      src.loop = false;
-                      src.connect(ctx.destination);
-                      src.start(0);
-                  });
-              });
-          }
+        if(xhr.status == 200) {
+          $(elm).html('<i class="fa fa-play"></i>');
+          $(elm).click(function() {
+            var src = ctx.createBufferSource();
+            // オーディオをデコード
+            ctx.decodeAudioData(xhr.response, function (buf) {
+              src.buffer = buf;
+              src.loop = false;
+              src.connect(ctx.destination);
+              src.start(0);
+            });
+          });
+        }
       };
       xhr.send(null);
 
