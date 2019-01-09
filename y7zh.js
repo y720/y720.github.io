@@ -25,6 +25,7 @@ $(function() {
       // ----------------------------------------
       // 音声MP3データのダウンロード
       // ----------------------------------------
+      window.AudioContext = window.AudioContext || window.webkitAudioContext;
       var ctx = new AudioContext();
       var elm = document.getElementById(mp3elmid);
       var mp3 = "/mp3/" + zhtext + ".mp3";
@@ -36,7 +37,6 @@ $(function() {
 	if(xhr.status == 200) {
 	  $(elm).html('<i class="fa fa-play"></i>');
 	  $(elm).click(function() {
-	    window.AudioContext = window.AudioContext || window.webkitAudioContext;
 	    var src = ctx.createBufferSource();
 
 	    // オーディオをデコード
