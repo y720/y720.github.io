@@ -25,6 +25,7 @@ $(function() {
       // ----------------------------------------
       // 音声MP3データのダウンロード
       // ----------------------------------------
+      var ctx = new AudioContext();
       var elm = document.getElementById(mp3elmid);
       var mp3 = "/mp3/" + zhtext + ".mp3";
       var xhr = new XMLHttpRequest();
@@ -36,7 +37,6 @@ $(function() {
 	  $(elm).html('<i class="fa fa-play"></i>');
 	  $(elm).click(function() {
 	    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-	    var ctx = new AudioContext();
 	    var src = ctx.createBufferSource();
 
 	    // オーディオをデコード
@@ -47,11 +47,7 @@ $(function() {
               src.start(0);
 	    });
 	  });
-
-
-
-	  
-	}
+        }
       };
       xhr.send(null);
 
@@ -59,9 +55,10 @@ $(function() {
       // 15秒後に表示を元に戻す
       // ----------------------------------------
       setTimeout(function() {
-	$(event.target).html($(event.target).data('jp'));
-	$(event.target).css('border', '2px solid #fff');
-	$(event.target).on('touchstart', handleStart);
+        $(event.target).html($(event.target).data('jp'));
+        $(event.target).css('border', '2px solid #fff');
+        $(event.target).on('touchstart', handleStart);
+        ctx.close();
       }, 15000);
     }
   };
