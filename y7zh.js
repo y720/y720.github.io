@@ -3,7 +3,6 @@ $(function() {
   var ctx = new AudioContext();
 
   var handleStart = function(event) {
-    var request;
     var zhtext;
     var pinyin;
     var num;
@@ -61,11 +60,6 @@ $(function() {
         ctx.close();
       }, 15000);
     }
-  };
-  
-  var handleEnd = function(event) {
-    $(event.target).html($(event.target).data('jp'));
-    $(document).off('touchend', handleEnd);
   };
 
   var q = $.url().param().q;
