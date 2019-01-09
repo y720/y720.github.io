@@ -1,6 +1,6 @@
 $(function() {
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
-  var ctx = new AudioContext();
+  var ctx;
 
   var handleStart = function(event) {
     var zhtext;
@@ -27,6 +27,9 @@ $(function() {
       // ----------------------------------------
       // 音声MP3データのダウンロード
       // ----------------------------------------
+      if(!ctx)
+	ctx = new AudioContext();
+	
       var elm = document.getElementById(mp3elmid);
       var mp3 = "/mp3/" + zhtext + ".mp3";
       var xhr = new XMLHttpRequest();
