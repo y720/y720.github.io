@@ -31,7 +31,7 @@ $(function() {
 	ctx = new AudioContext();
 	
       var elm = document.getElementById(mp3elmid);
-      var mp3 = "/mp3/" + zhtext + ".mp3";
+      var mp3 = "/mp3/" + zhtext + ".m4a";
       var xhr = new XMLHttpRequest();
 
       xhr.open('GET', mp3, true);
