@@ -94,7 +94,7 @@ $(function() {
           template = template + ' data-zh="' + words[i][1] + '"';
           template = template + ' data-pinyin="' + words[i][2] + '"';
           template = template + ' data-num="' + cnt + '"';
-          template = template + '>' + words[i][0];
+          template = template + '>_' + words[i][0];
           template = template + '</div>';
         }
         $("main").append(template);
