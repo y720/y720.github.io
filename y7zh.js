@@ -29,7 +29,7 @@ $(function() {
       // ----------------------------------------
       if(!ctx)
 	ctx = new AudioContext();
-	
+      
       var elm = document.getElementById(mp3elmid);
       var mp3 = "/mp3/" + zhtext + ".m4a";
       var xhr = new XMLHttpRequest();
@@ -89,7 +89,13 @@ $(function() {
           template = template + '</div>';
           template = template + '</div>';
         } else {
-          template = '<div>' + words[i][0] + '</div>';
+          template = template + '<div class="word"';
+          template = template + ' data-jp="' + words[i][0] + '"';
+          template = template + ' data-zh="' + words[i][1] + '"';
+          template = template + ' data-pinyin="' + words[i][2] + '"';
+          template = template + ' data-num="' + cnt + '"';
+          template = template + '>' + words[i][0];
+          template = template + '</div>';
         }
         $("main").append(template);
       }
