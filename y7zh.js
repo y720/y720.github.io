@@ -11,7 +11,7 @@ $(function() {
     zhtext = $(event.target).data('zh');
     pinyin = $(event.target).data('pinyin');
     num = $(event.target).data('num');
-    if(zhtext) {
+    if(zhtext||pinyin) {
       $(event.target).css('border', '2px solid #000');
       anshtml = '';
       if(pinyin) {
