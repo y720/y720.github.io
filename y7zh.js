@@ -31,7 +31,13 @@ $(function() {
 	ctx = new AudioContext();
       
       var elm = document.getElementById(mp3elmid);
-      var mp3 = "/mp3/" + zhtext + ".m4a";
+      var mp3 = "/mp3/";
+      if(zhtext) {
+	mp3 = mp3 + zhtext + ".m4a";
+      } else if(pinyin) {
+	mp3 = mp3 + pinyin + ".m4a";
+      }
+
       var xhr = new XMLHttpRequest();
 
       xhr.open('GET', mp3, true);
