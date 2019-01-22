@@ -89,6 +89,7 @@ $(function() {
           template = template + '</div>';
           template = template + '</div>';
         } else {
+          template = '';
           template = template + '<div class="word"';
           template = template + ' data-jp="' + words[i][0] + '"';
           template = template + ' data-zh="' + words[i][1] + '"';
