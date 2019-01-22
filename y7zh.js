@@ -83,7 +83,7 @@ $(function() {
     for(i = 0; i < words.length; i++) {
       if(words[i] && words[i][0] && words[i][0]!=='END') {
         cnt = cnt + 1;
-        if(words[i][1]) {
+        if(1/*words[i][1]*/) {
           template = '';
           template = template + '<div class="alert alert-dark alert-dismissible fade show y7alert" role="alert">';
           template = template + '<div class="h3 word"';
