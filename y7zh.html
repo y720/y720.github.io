@@ -93,6 +93,7 @@ $(function() {
   var handleStart = function(event) {
     var zhtext;
     var pinyin;
+    var flg;
     var num;
     var anshtml;
     var mp3elmid;
@@ -147,8 +148,12 @@ $(function() {
       };
       xhr.send(null);
 
-      cnt2 = cnt2 + 1;
-      $("#navbar1").text(cnt2 + "/" + cnt1);
+      flg = $(event.target).data('flg');
+      if(flg == 1) {
+        cnt2 = cnt2 + 1;
+        $("#navbar1").text(cnt2 + "/" + cnt1);
+        $(event.target).data('flg',0);
+      }
 
       // ----------------------------------------
       // 15秒後に表示を元に戻す
@@ -163,7 +168,7 @@ $(function() {
 
   var words = [
     ["##一括再生##","","y7zh"],
-    ["#imandarinpod 2019-01-17 我想请假","",""],
+    ["#imp 2019-01-17 我想请假","",""],
     ["顔色","脸色","liǎnsè"],
     ["カゼ","感冒","ɡǎnmào"],
     ["発熱する","发烧","fāshāo"],
@@ -2252,6 +2257,7 @@ $(function() {
       template = template + ' data-zh="' + words[i][1] + '"';
       template = template + ' data-pinyin="' + words[i][2] + '"';
       template = template + ' data-num="' + cnt1 + '"';
+      template = template + ' data-flg="1"';
       template = template + '>' + words[i][0];
       template = template + '</div>';
       template = template + '</div>';
