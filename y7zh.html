@@ -86,6 +86,10 @@ $(function() {
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
   var ctx;
 
+  var cnt1 = 0;
+  var cnt2 = 0;
+
+
   var handleStart = function(event) {
     var zhtext;
     var pinyin;
@@ -143,6 +147,8 @@ $(function() {
       };
       xhr.send(null);
 
+      cnt2 = cnt2 + 1;
+
       // ----------------------------------------
       // 15秒後に表示を元に戻す
       // ----------------------------------------
@@ -150,6 +156,7 @@ $(function() {
         $(event.target).html($(event.target).data('jp'));
         $(event.target).css('border', '2px solid #fff');
         $(event.target).on('touchstart', handleStart);
+        $("#navbar1").text(cnt2 + "/" + cnt1);
       }, 15000);
     }
   };
@@ -2235,10 +2242,9 @@ $(function() {
   ];
 
   var i;
-  var cnt = 0;
   for(i = 0; i < words.length; i++) {
     if(words[i] && words[i][0] && words[i][0]!=='END') {
-      cnt = cnt + 1;
+      cnt1 = cnt1 + 1;
       template = '';
       template = template + '<div class="alert alert-dark alert-dismissible fade show y7alert" role="alert">';
       template = template + '<div class="h3 word"';
@@ -2251,7 +2257,7 @@ $(function() {
       template = template + '</div>';
       $("main").append(template);
     }
-    $("#navbar1").text(cnt);
+    $("#navbar1").text(cnt1);
   }
   $(".word").on('touchstart', handleStart);
   $(".word").on('click', handleStart);
