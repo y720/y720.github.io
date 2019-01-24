@@ -28,14 +28,14 @@ $(function() {
       // 音声MP3データのダウンロード
       // ----------------------------------------
       if(!ctx)
-	ctx = new AudioContext();
+        ctx = new AudioContext();
       
       var elm = document.getElementById(mp3elmid);
       var mp3 = "/mp3/";
       if(zhtext) {
-	mp3 = mp3 + zhtext + ".m4a";
+        mp3 = mp3 + zhtext + ".m4a";
       } else if(pinyin) {
-	mp3 = mp3 + pinyin + ".m4a";
+        mp3 = mp3 + pinyin + ".m4a";
       }
 
       var xhr = new XMLHttpRequest();
@@ -80,27 +80,16 @@ $(function() {
     for(i = 0; i < words.length; i++) {
       if(words[i] && words[i][0] && words[i][0]!=='END') {
         cnt = cnt + 1;
-        if(1/*words[i][1]*/) {
-          template = '';
-          template = template + '<div class="alert alert-dark alert-dismissible fade show y7alert" role="alert">';
-          template = template + '<div class="h3 word"';
-          template = template + ' data-jp="' + words[i][0] + '"';
-          template = template + ' data-zh="' + words[i][1] + '"';
-          template = template + ' data-pinyin="' + words[i][2] + '"';
-          template = template + ' data-num="' + cnt + '"';
-          template = template + '>' + words[i][0];
-          template = template + '</div>';
-          template = template + '</div>';
-        } else {
-          template = '';
-          template = template + '<div class="word"';
-          template = template + ' data-jp="' + words[i][0] + '"';
-          template = template + ' data-zh="' + words[i][1] + '"';
-          template = template + ' data-pinyin="' + words[i][2] + '"';
-          template = template + ' data-num="' + cnt + '"';
-          template = template + '>' + words[i][0];
-          template = template + '</div>';
-        }
+        template = '';
+        template = template + '<div class="alert alert-dark alert-dismissible fade show y7alert" role="alert">';
+        template = template + '<div class="h3 word"';
+        template = template + ' data-jp="' + words[i][0] + '"';
+        template = template + ' data-zh="' + words[i][1] + '"';
+        template = template + ' data-pinyin="' + words[i][2] + '"';
+        template = template + ' data-num="' + cnt + '"';
+        template = template + '>' + words[i][0];
+        template = template + '</div>';
+        template = template + '</div>';
         $("main").append(template);
       }
       $("#navbar1").text(cnt);
