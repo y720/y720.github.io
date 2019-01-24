@@ -109,7 +109,9 @@ $(function() {
         anshtml = anshtml + zhtext;
       }
       mp3elmid = 'mp3elm_' + num;
-      anshtml = anshtml + '<br><a class="mp3playa" id="' + mp3elmid + '">-</a>';
+      if(!zhtext){
+        anshtml = anshtml + '<br><a class="mp3playa" id="' + mp3elmid + '">-</a>';
+      }
       $(event.target).html(anshtml);
       $(event.target).off('touchstart', handleStart);
 
