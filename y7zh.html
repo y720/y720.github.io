@@ -148,6 +148,7 @@ $(function() {
       xhr.send(null);
 
       cnt2 = cnt2 + 1;
+      $("#navbar1").text(cnt2 + "/" + cnt1);
 
       // ----------------------------------------
       // 15秒後に表示を元に戻す
@@ -156,7 +157,6 @@ $(function() {
         $(event.target).html($(event.target).data('jp'));
         $(event.target).css('border', '2px solid #fff');
         $(event.target).on('touchstart', handleStart);
-        $("#navbar1").text(cnt2 + "/" + cnt1);
       }, 15000);
     }
   };
