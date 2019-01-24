@@ -96,7 +96,7 @@ $(function() {
     pinyin = $(event.target).data('pinyin');
     num = $(event.target).data('num');
     if(zhtext||pinyin) {
-      $(event.target).css('border', '4px solid #f00');
+      $(event.target).css('border', '2px solid #000');
       anshtml = '';
       if(pinyin) {
         anshtml = anshtml + '<ruby>' + zhtext + '<rt>' + pinyin + '</rt></ruby>';
