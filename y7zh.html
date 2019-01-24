@@ -154,6 +154,7 @@ $(function() {
     }
   };
 
+  var words;
   var i;
   for(i = 0; i < words.length; i++) {
     if(words[i] && words[i][0] && words[i][0]!=='END') {
@@ -175,7 +176,7 @@ $(function() {
   $(".word").on('touchstart', handleStart);
   $(".word").on('click', handleStart);
 
-  var words = [
+  words = [
     ["##一括再生##","","y7zh"],
     ["#imandarinpod 2019-01-17 我想请假","",""],
     ["顔色","脸色","liǎnsè"],
