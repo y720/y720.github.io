@@ -118,37 +118,38 @@ $(function() {
       // ----------------------------------------
       // 音声MP3データのダウンロード
       // ----------------------------------------
-      if(!ctx)
-        ctx = new AudioContext();
-      
-      var elm = document.getElementById(mp3elmid);
-      var mp3 = "/mp3/";
-      if(zhtext) {
-        mp3 = mp3 + zhtext + ".m4a";
-      } else if(pinyin) {
-        mp3 = mp3 + pinyin + ".m4a";
-      }
-
-      var xhr = new XMLHttpRequest();
-
-      xhr.open('GET', mp3, true);
-      xhr.responseType = "arraybuffer";
-      xhr.onload = function () {
-        if(xhr.status == 200) {
-          $(elm).html('<i class="fa fa-play"></i>');
-          $(elm).click(function() {
-            var src = ctx.createBufferSource();
-            // オーディオをデコード
-            ctx.decodeAudioData(xhr.response, function (buf) {
-              src.buffer = buf;
-              src.loop = false;
-              src.connect(ctx.destination);
-              src.start(0);
-            });
-          });
+      if(!zhtext){
+        if(!ctx)
+          ctx = new AudioContext();
+        var elm = document.getElementById(mp3elmid);
+        var mp3 = "/mp3/";
+        if(zhtext) {
+          mp3 = mp3 + zhtext + ".m4a";
+        } else if(pinyin) {
+          mp3 = mp3 + pinyin + ".m4a";
         }
-      };
-      xhr.send(null);
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('GET', mp3, true);
+        xhr.responseType = "arraybuffer";
+        xhr.onload = function () {
+          if(xhr.status == 200) {
+            $(elm).html('<i class="fa fa-play"></i>');
+            $(elm).click(function() {
+              var src = ctx.createBufferSource();
+              // オーディオをデコード
+              ctx.decodeAudioData(xhr.response, function (buf) {
+                src.buffer = buf;
+                src.loop = false;
+                src.connect(ctx.destination);
+                src.start(0);
+              });
+            });
+          }
+        };
+        xhr.send(null);
+      }
 
       // ----------------------------------------
       // カウンター表示
