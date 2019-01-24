@@ -70,10 +70,7 @@ $(function() {
     }
   };
 
-  var q = $.url().param().q;
   var wordsjson = "y7words.json";
-  if(q)
-    wordsjson = q;
 
   var time1;
   time1 = new Date();
