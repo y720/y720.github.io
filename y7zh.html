@@ -154,35 +154,28 @@ $(function() {
     }
   };
 
-  var wordsjson = "y7words.json";
-
-  var time1;
-  time1 = new Date();
-  $.getJSON("json/" + wordsjson + "?" + time1.getTime(), function(words) {
-    var i, cnt, template;
-    cnt = 0;
-    for(i = 0; i < words.length; i++) {
-      if(words[i] && words[i][0] && words[i][0]!=='END') {
-        cnt = cnt + 1;
-        template = '';
-        template = template + '<div class="alert alert-dark alert-dismissible fade show y7alert" role="alert">';
-        template = template + '<div class="h3 word"';
-        template = template + ' data-jp="' + words[i][0] + '"';
-        template = template + ' data-zh="' + words[i][1] + '"';
-        template = template + ' data-pinyin="' + words[i][2] + '"';
-        template = template + ' data-num="' + cnt + '"';
-        template = template + '>' + words[i][0];
-        template = template + '</div>';
-        template = template + '</div>';
-        $("main").append(template);
-      }
-      $("#navbar1").text(cnt);
+  var i;
+  for(i = 0; i < words.length; i++) {
+    if(words[i] && words[i][0] && words[i][0]!=='END') {
+      cnt = cnt + 1;
+      template = '';
+      template = template + '<div class="alert alert-dark alert-dismissible fade show y7alert" role="alert">';
+      template = template + '<div class="h3 word"';
+      template = template + ' data-jp="' + words[i][0] + '"';
+      template = template + ' data-zh="' + words[i][1] + '"';
+      template = template + ' data-pinyin="' + words[i][2] + '"';
+      template = template + ' data-num="' + cnt + '"';
+      template = template + '>' + words[i][0];
+      template = template + '</div>';
+      template = template + '</div>';
+      $("main").append(template);
     }
-    $(".word").on('touchstart', handleStart);
-    $(".word").on('click', handleStart);
-  });
+    $("#navbar1").text(cnt);
+  }
+  $(".word").on('touchstart', handleStart);
+  $(".word").on('click', handleStart);
 
-  var wordz = [
+  var words = [
     ["##一括再生##","","y7zh"],
     ["#imandarinpod 2019-01-17 我想请假","",""],
     ["顔色","脸色","liǎnsè"],
