@@ -85,73 +85,21 @@
     <script>
 
 $(function() {
-  window.AudioContext = window.AudioContext || window.webkitAudioContext;
-  var ctx;
-
   var cnt1 = 0;
   var cnt2 = 0;
-
 
   var handleStart = function(event) {
     var zhtext;
     var pinyin;
     var flg;
-    var num;
     var anshtml;
-    var mp3elmid;
     zhtext = $(event.target).data('zh');
     pinyin = $(event.target).data('pinyin');
-    num = $(event.target).data('num');
     if(zhtext||pinyin) {
       $(event.target).css('border', '2px solid #000');
-      anshtml = '';
-      if(pinyin) {
-        anshtml = anshtml + '<ruby>' + zhtext + '<rt>' + pinyin + '</rt></ruby>';
-      } else {
-        anshtml = anshtml + zhtext;
-      }
-      mp3elmid = 'mp3elm_' + num;
-      if(!zhtext){
-        anshtml = anshtml + '<br><a class="mp3playa" id="' + mp3elmid + '">-</a>';
-      }
+      anshtml = '<ruby>' + zhtext + '<rt>' + pinyin + '</rt></ruby>';
       $(event.target).html(anshtml);
       $(event.target).off('touchstart', handleStart);
-
-      // ----------------------------------------
-      // 音声MP3データのダウンロード
-      // ----------------------------------------
-      if(!zhtext){
-        if(!ctx)
-          ctx = new AudioContext();
-        var elm = document.getElementById(mp3elmid);
-        var mp3 = "/mp3/";
-        if(zhtext) {
-          mp3 = mp3 + zhtext + ".m4a";
-        } else if(pinyin) {
-          mp3 = mp3 + pinyin + ".m4a";
-        }
-
-        var xhr = new XMLHttpRequest();
-
-        xhr.open('GET', mp3, true);
-        xhr.responseType = "arraybuffer";
-        xhr.onload = function () {
-          if(xhr.status == 200) {
-            $(elm).html('<i class="fa fa-play"></i>');
-            $(elm).click(function() {
-              var src = ctx.createBufferSource();
-              // オーディオをデコード
-              ctx.decodeAudioData(xhr.response, function (buf) {
-                src.buffer = buf;
-                src.loop = false;
-                src.connect(ctx.destination);
-                src.start(0);
-              });
-            });
-          }
-        };
-        xhr.send(null);
-      }
 
       // ----------------------------------------
       // カウンター表示
