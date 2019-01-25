@@ -57,9 +57,8 @@
           aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-	<audio src="mp3/y7zh.m4a" controls>TEST</audio>
+        <audio src="https://y720.github.io/mp3/y7zh.m4a" controls></audio>
 	<!-- 
 	     <ul class="navbar-nav mr-auto">
              <li class="nav-item active">
@@ -1401,7 +1400,11 @@ $(function() {
     if(words[i] && words[i][0] && words[i][0]!=='END') {
       cnt1 = cnt1 + 1;
       template = '';
-      template = template + '<div class="alert alert-dark alert-dismissible fade show y7alert" role="alert">';
+      if(!words[i][1]){
+          template = template + '<div class="alert alert-dismissible fade show y7alert" role="alert">';
+      } else {
+          template = template + '<div class="alert alert-dark alert-dismissible fade show y7alert" role="alert">';
+      }
       template = template + '<div class="h3 word"';
       template = template + ' data-jp="' + words[i][0] + '"';
       template = template + ' data-zh="' + words[i][1] + '"';
