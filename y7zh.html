@@ -81,7 +81,9 @@
 	 pinyin = $(event.target).data('pinyin');
 	 if(zhtext||pinyin) {
 	   $(event.target).css('border', '2px solid #000');
-	   anshtml = '<ruby>' + zhtext + '<rt>' + pinyin + '</rt></ruby>';
+	   // anshtml = '<ruby>' + zhtext + '<rt>' + pinyin + '</rt></ruby>';
+	   anshtml = pinyin + '<br><i class="flag-icon flag-icon-squared flag-icon-cn"></i>' + zhtext;
+
 	   $(event.target).html(anshtml);
 	   $(event.target).off('touchstart', handleStart);
 
