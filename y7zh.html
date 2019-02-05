@@ -5,6 +5,7 @@
     <title>y720jp 中国語暗記</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.9.0/css/flag-icon.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"><style type="text/css">
 																								       body {
 																									 margin:0;
@@ -1351,7 +1352,7 @@
 	   template = template + ' data-pinyin="' + words[i][2] + '"';
 	   template = template + ' data-num="' + cnt1 + '"';
 	   template = template + ' data-flg="1"';
-	   template = template + '>' + words[i][2] + '<br>' + words[i][0];
+	   template = template + '>' + words[i][2] + '<br><i class="flag-icon flag-icon-jp"></i>' + words[i][0];
 	   template = template + '</div>';
 	   template = template + '</div>';
 	   $("main").append(template);
