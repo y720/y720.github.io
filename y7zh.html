@@ -82,7 +82,7 @@
 	 if(zhtext||pinyin) {
 	   $(event.target).css('border', '2px solid #000');
 	   // anshtml = '<ruby>' + zhtext + '<rt>' + pinyin + '</rt></ruby>';
-	   anshtml = pinyin + '<br><i class="flag-icon flag-icon-squared flag-icon-cn"></i>' + zhtext;
+	   anshtml = pinyin + '<br><i class="flag-icon flag-icon-squared flag-icon-cn"></i>&nbsp;' + zhtext;
 
 	   $(event.target).html(anshtml);
 	   $(event.target).off('touchstart', handleStart);
@@ -101,6 +101,7 @@
 	   // 15秒後に表示を元に戻す
 	   // ----------------------------------------
 	   setTimeout(function() {
+	     anshtml = pinyin + '<br><i class="flag-icon flag-icon-squared flag-icon-jp"></i>&nbsp;' + $(event.target).data('jp');
              $(event.target).html($(event.target).data('jp'));
              $(event.target).css('border', '2px solid #fff');
              $(event.target).on('touchstart', handleStart);
@@ -1354,7 +1355,7 @@
 	   template = template + ' data-pinyin="' + words[i][2] + '"';
 	   template = template + ' data-num="' + cnt1 + '"';
 	   template = template + ' data-flg="1"';
-	   template = template + '>' + words[i][2] + '<br><i class="flag-icon flag-icon-squared flag-icon-jp"></i>' + words[i][0];
+	   template = template + '>' + words[i][2] + '<br><i class="flag-icon flag-icon-squared flag-icon-jp"></i>&nbsp;' + words[i][0];
 	   template = template + '</div>';
 	   template = template + '</div>';
 	   $("main").append(template);
