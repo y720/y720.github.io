@@ -1,4 +1,8 @@
-*.laccdb
+.DS_Store
+*~
+*.swp
+*.zip
 *.BAK
 jq.exe
-.DS_Store
+public
+node_modules
