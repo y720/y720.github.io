@@ -18,7 +18,7 @@
         user-select:none;
       }
 
-      .y7alert {
+      .y7 {
         margin-bottom:4px;
         padding:2px 10px;
       }
@@ -54,79 +54,75 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
     <script>
+    $(function() {
+      var cnt1 = 0;
+      var cnt2 = 0;
 
-     $(function() {
-       var cnt1 = 0;
-       var cnt2 = 0;
+      var handleStart = function(event) {
+        var flg;
+        var anshtml;
+        var zhtext = $(event.target).data('zh');
+        if(zhtext) {
+          $(event.target).css('border', '2px solid #000');
+          anshtml = '<i class="flag-icon flag-icon-squared flag-icon-cn"></i>&nbsp;' + zhtext;
 
-       var handleStart = function(event) {
-     var zhtext;
-     var flg;
-     var anshtml;
-     zhtext = $(event.target).data('zh');
-     if(zhtext) {
-       $(event.target).css('border', '2px solid #000');
-       anshtml = '<i class="flag-icon flag-icon-squared flag-icon-cn"></i>&nbsp;' + zhtext;
+          $(event.target).html(anshtml);
+          $(event.target).off('touchstart', handleStart);
 
-       $(event.target).html(anshtml);
-       $(event.target).off('touchstart', handleStart);
+          // ----------------------------------------
+          // カウンター表示
+          // ----------------------------------------
+          flg = $(event.target).data('flg');
+          if(flg == 1) {
+            cnt2 = cnt2 + 1;
+            $("#navbar1").text(cnt2 + "/" + cnt1);
+            $(event.target).data('flg',0);
+          }
 
-       // ----------------------------------------
-       // カウンター表示
-       // ----------------------------------------
-       flg = $(event.target).data('flg');
-       if(flg == 1) {
-             cnt2 = cnt2 + 1;
-             $("#navbar1").text(cnt2 + "/" + cnt1);
-             $(event.target).data('flg',0);
-       }
+          // ----------------------------------------
+          // 15秒後に表示を元に戻す
+          // ----------------------------------------
+          setTimeout(function() {
+            anshtml = '<i class="flag-icon flag-icon-squared flag-icon-jp"></i>&nbsp;' + $(event.target).data('jp');
+            $(event.target).html(anshtml);
+            $(event.target).css('border', '2px solid #fff');
+            $(event.target).on('touchstart', handleStart);
+          }, 3000);
+        }
+      };
 
-       // ----------------------------------------
-       // 15秒後に表示を元に戻す
-       // ----------------------------------------
-       setTimeout(function() {
-         anshtml = '<i class="flag-icon flag-icon-squared flag-icon-jp"></i>&nbsp;' + $(event.target).data('jp');
-             $(event.target).html(anshtml);
-             $(event.target).css('border', '2px solid #fff');
-             $(event.target).on('touchstart', handleStart);
-       }, 3000);
-     }
-       };
+      var words = [
+        ["#大家的汉语 第8課",""],
+        ["近くに新しいレストランがあります。行ったことがありますか？","附近有一家新的餐厅你去过吗？"],
+        ["まだ行ったことはありません。どんなレストランですか","还没有。是什么餐厅？"],
+        ["四川料理です。辛いのは食べられますか","四川菜。你吃不吃辣？"],
+        ["END","",""]
+      ];
 
-       var words = [
-     ["#大家的汉语 第8課",""],
-     ["近くに新しいレストランがあります。行ったことがありますか？","附近有一家新的餐厅你去过吗？"],
-     ["まだ行ったことはありません。どんなレストランですか","还没有。是什么餐厅？"],
-     ["四川料理です。辛いのは食べられますか","四川菜。你吃不吃辣？"],
-     ["END","",""]
-     ];
-
-       var i;
-       for(i = 0; i < words.length; i++) {
-     if(words[i] && words[i][0] && words[i][0]!=='END') {
-       cnt1 = cnt1 + 1;
-       template = '';
-       if(!words[i][1]){
-             template = template + '<div class="alert alert-dismissible fade show y7alert" role="alert">';
-       } else {
-             template = template + '<div class="alert alert-dark alert-dismissible fade show y7alert" role="alert">';
-       }
-       template = template + '<div class="h3 word"';
-       template = template + ' data-jp="' + words[i][0] + '"';
-       template = template + ' data-zh="' + words[i][1] + '"';
-       template = template + ' data-num="' + cnt1 + '"';
-       template = template + ' data-flg="1"';
-       template = template + '><i class="flag-icon flag-icon-squared flag-icon-jp"></i>&nbsp;' + words[i][0];
-       template = template + '</div>';
-       template = template + '</div>';
-       $("main").append(template);
-     }
-     $("#navbar1").text(cnt1);
-       }
-       $(".word").on('touchstart', handleStart);
-       $(".word").on('click', handleStart);
-     });
-
+      var i;
+      for(i = 0; i < words.length; i++) {
+        if(words[i] && words[i][0] && words[i][0]!=='END') {
+          template = '';
+          if(!words[i][1]){
+            template = template + '<div class="alert            alert-dismissible fade show y7" role="alert">';
+          } else {
+            template = template + '<div class="alert alert-dark alert-dismissible fade show y7" role="alert">';
+            cnt1 = cnt1 + 1;
+          }
+          template = template + '<div class="h3 word"';
+          template = template + ' data-jp="' + words[i][0] + '"';
+          template = template + ' data-zh="' + words[i][1] + '"';
+          template = template + ' data-flg="1"';
+          template = template + '><i class="flag-icon flag-icon-squared flag-icon-jp"></i>&nbsp;' + words[i][0];
+          template = template + '</div>';
+          template = template + '</div>';
+          $("main").append(template);
+        }
+        $("#navbar1").text(cnt1);
+      }
+      $(".word").on('touchstart', handleStart);
+      $(".word").on('click', handleStart);
+    });
     </script>
   </body>
 </html>
