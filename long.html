@@ -61,15 +61,12 @@
 
        var handleStart = function(event) {
      var zhtext;
-     var pinyin;
      var flg;
      var anshtml;
      zhtext = $(event.target).data('zh');
-     pinyin = $(event.target).data('pinyin');
-     if(zhtext||pinyin) {
+     if(zhtext) {
        $(event.target).css('border', '2px solid #000');
-       // anshtml = '<ruby>' + zhtext + '<rt>' + pinyin + '</rt></ruby>';
-       anshtml = pinyin + '<br><i class="flag-icon flag-icon-squared flag-icon-cn"></i>&nbsp;' + zhtext;
+       anshtml = '<i class="flag-icon flag-icon-squared flag-icon-cn"></i>&nbsp;' + zhtext;
 
        $(event.target).html(anshtml);
        $(event.target).off('touchstart', handleStart);
@@ -88,7 +85,7 @@
        // 15秒後に表示を元に戻す
        // ----------------------------------------
        setTimeout(function() {
-         anshtml = pinyin + '<br><i class="flag-icon flag-icon-squared flag-icon-jp"></i>&nbsp;' + $(event.target).data('jp');
+         anshtml = '<i class="flag-icon flag-icon-squared flag-icon-jp"></i>&nbsp;' + $(event.target).data('jp');
              $(event.target).html(anshtml);
              $(event.target).css('border', '2px solid #fff');
              $(event.target).on('touchstart', handleStart);
@@ -97,8 +94,8 @@
        };
 
        var words = [
-     ["#大家的汉语 第8課","",""],
-     ["歌を歌う","唱歌","Chànggē"],
+     ["#大家的汉语 第8課",""],
+     ["歌を歌う","唱歌"],
      ["END","",""]
      ];
 
@@ -115,10 +112,9 @@
        template = template + '<div class="h3 word"';
        template = template + ' data-jp="' + words[i][0] + '"';
        template = template + ' data-zh="' + words[i][1] + '"';
-       template = template + ' data-pinyin="' + words[i][2] + '"';
        template = template + ' data-num="' + cnt1 + '"';
        template = template + ' data-flg="1"';
-       template = template + '>' + words[i][2] + '<br><i class="flag-icon flag-icon-squared flag-icon-jp"></i>&nbsp;' + words[i][0];
+       template = template + '>' + words[i][0];
        template = template + '</div>';
        template = template + '</div>';
        $("main").append(template);
