@@ -81,14 +81,14 @@
           }
 
           // ----------------------------------------
-          // 3秒後に表示を元に戻す
+          // 10秒後に表示を元に戻す
           // ----------------------------------------
           setTimeout(function() {
             anshtml = '<i class="flag-icon flag-icon-squared flag-icon-jp"></i>&nbsp;' + $(event.target).data('jp');
             $(event.target).html(anshtml);
             $(event.target).css('border', '2px solid #fff');
             $(event.target).on('touchstart', handleStart);
-          }, 3000);
+          }, 10000);
         }
       };
 
