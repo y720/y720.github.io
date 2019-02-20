@@ -65,8 +65,8 @@
         var zhtext = $(event.target).data('zh');
         if(zhtext) {
           $(event.target).css('border', '2px solid #000');
-          anshtml = '<i class="flag-icon flag-icon-squared flag-icon-cn"></i>&nbsp;' + zhtext;
-
+          anshtml = '<i class="flag-icon flag-icon-squared flag-icon-cn"></i>&nbsp;';
+          anshtml = anshtml + zhtext;
           $(event.target).html(anshtml);
           $(event.target).off('touchstart', handleStart);
 
@@ -84,7 +84,8 @@
           // 10秒後に表示を元に戻す
           // ----------------------------------------
           setTimeout(function() {
-            anshtml = '<i class="flag-icon flag-icon-squared flag-icon-jp"></i>&nbsp;' + $(event.target).data('jp');
+            anshtml = '<i class="flag-icon flag-icon-squared flag-icon-jp"></i>&nbsp;';
+            anshtml = anshtml + $(event.target).data('jp');
             $(event.target).html(anshtml);
             $(event.target).css('border', '2px solid #fff');
             $(event.target).on('touchstart', handleStart);
@@ -126,7 +127,8 @@
           template = template + ' data-jp="' + words[i][0] + '"';
           template = template + ' data-zh="' + words[i][1] + '"';
           template = template + ' data-flg="1"';
-          template = template + '><i class="flag-icon flag-icon-squared flag-icon-jp"></i>&nbsp;' + words[i][0];
+          template = template + '><i class="flag-icon flag-icon-squared flag-icon-jp"></i>&nbsp;';
+          template = template + words[i][0];
           template = template + '</div>';
           template = template + '</div>';
           $("main").append(template);
