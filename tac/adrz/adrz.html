@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+  <script src="jquery-1.9.0.js"></script>
+  <script src="adrz.js"></script>
+  </head>
+  <body>
+
+<div id="right">
+  <input id="keyword" type="text" style="width:95%"/>
+  <p>検索結果</p>
+  <ul id="info" style="list-style:none"></ul>
+</div>
+  <script>
+    $("#keyword").on("keydown", searchEvent);
+    function searchEvent(e) {
+      if (e.keyCode !== 13) {
+        return;
+      }
+
+      const results = [];
+      var inputText = $(this).val();
+
+      if (inputText) {
+        var ptr = inputText.indexOf("#");
+        if (ptr >= 0) {
+          inputText = inputText.substring(0, ptr);
+        }
+
+        const words = inputText.split(' ');
+
+        for(var i=0;i < adrz.length;i++) {
+          var matchcnt = 0;
+          var name = adrz[i];
+          for(var j=0;j < words.length;j++) {
+            var word1 = words[j];
+            ptr = name.indexOf(word1);
+            if(ptr == -1) {
+              break;
+            } else {
+              matchcnt += 1;
+              name = name.substring(ptr);
+            }
+          }
+          if(matchcnt == words.length){
+            results.push(adrz[i]);
+          }
+        }
+
+        $("#info").empty();
+        var now = new Date();
+        $.each(results, (index, name) => {
+          $("#info").append("<li>" + name + "</li>");
+        });
+        $("#info").append("<li>END " + now.getTime() + "</li>");
+      } else {
+        $("#info").empty();
+      }
+    }
+    </script>
+  </body>
+</html>
