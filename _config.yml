@@ -30,7 +30,7 @@ twitter_username: 720yamamoto
 github_username:  y720
 
 # Build settings
-theme: merlot
+theme: minima
 plugins:
   - jekyll-feed
 
