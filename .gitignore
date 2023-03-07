@@ -1,8 +1,5 @@
-.DS_Store
-*~
-*.swp
-*.zip
-*.BAK
-jq.exe
-public
-node_modules
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
