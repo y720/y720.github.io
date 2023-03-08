@@ -21,6 +21,7 @@
 title: ヤマナツ（テスト）
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
+  ああああ
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
@@ -29,6 +30,9 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 720yamamoto
 github_username:  y720
 lang: 'ja'
+author:
+  name: bbb
+  email: 720yamamoto@example.com
 
 # Build settings
 #theme: minima
